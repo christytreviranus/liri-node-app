@@ -41,16 +41,24 @@ switch (command) {
 //Create function for Concert Search
 function concertThis(artist) {
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
-      .then(function (response) {
-        console.log("Name of the venue:", response.data[0].venue.name);
-        console.log("Venue location:", response.data[0].venue.city);
+      .then(function (response, err) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+        let venue = response.data[0].venue.name;
+        let venueLocation = response.data[0].venue.name;
+        console.log("Name of the venue:", venue);
+        console.log("Venue location:", venueLocation);
         let eventDate = moment(response.data[0].datetime).format('MM/DD/YYYY');
         console.log("Date of the Event:", eventDate);
-      })
-      .catch(function (error) {
-        console.log(error);
+        //Append data to log.txt
+        fs.appendFileSync("log.txt", "Artist: " + artist + "\nVenue Name: " + venue + "\nVenue Location: " + venueLocation + "\nEvent Date: " + eventDate + "\n----------------\n", function (error) {
+          if (error) {
+              console.log(error);
+          } 
       });
-  }
+  });
+}
 
 //Create function for Song Search
 function getMySong(songName) {  
@@ -58,19 +66,27 @@ function getMySong(songName) {
     if (!songName) {
       songName = "I Saw the Sign";
     }
-
     spotify.search({ type: 'track', query: songName }, function (err, data) {
       if (err) {
         return console.log('Error occurred: ' + err);
       }
       //Artist(s)
-      console.log("Artist(s): ", data.tracks.items[0].album.artists[0].name)
+      let artist = data.tracks.items[0].album.artists[0].name;
+      console.log("Artist(s): ", artist)
       //Song Name
       console.log("Song Name: ", data.tracks.items[0].name)
       // A preview link of the song from Spotify
-      console.log("Preview Link: ", data.tracks.items[0].preview_url)
+      let preview_url = data.tracks.items[0].preview_url
+      console.log("Preview Link: ", preview_url)
       // The album that the song is from
-      console.log("Album Name: ", data.tracks.items[0].album.name)
+      let albumName = data.tracks.items[0].album.name
+      console.log("Album Name: ", albumName)
+      //Append data to log.txt
+      fs.appendFileSync("log.txt", "Artist: " + artist + "\nSong Name: " + songName + "\nPreview Link: " + preview_url + "\nAlbum Name: " + albumName + "\n----------------\n", function (error) {
+        if (error) {
+            console.log(error);
+        } 
+    });
     });
   }
 
@@ -92,6 +108,12 @@ function movieThis(movieName) {
        Plot of the movie: ${data.data.Plot}
        Actors in the movie: ${data.data.Actors}`;
        console.log(results)
+      //Append data to log.txt
+      fs.appendFileSync("log.txt", results + "\n----------------\n", function (error) {
+        if (error) {
+            console.log(error);
+        } 
+    });
     })
     .catch(function (error) {
       console.log(error);
@@ -122,5 +144,11 @@ function doWhatItSays() {
         default:
           break;
       }
+      //Append data to log.txt
+      fs.appendFileSync("log.txt", value + "\n----------------\n", function (error) {
+        if (error) {
+            console.log(error);
+        } 
+    });
     });
   }
