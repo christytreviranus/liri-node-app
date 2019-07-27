@@ -138,11 +138,6 @@ function doWhatItSays() {
         case "spotify-this-song":
           getMySong(value)
           break;
-        case "movie-this":
-          movieThis(value)
-          break;
-        default:
-          break;
       }
       //Append data to log.txt
       fs.appendFileSync("log.txt", value + "\n----------------\n", function (error) {
