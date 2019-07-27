@@ -23,14 +23,17 @@ do-what-it-says
 * Javascript
 
 ## npm packages: 
-* [spotify](https://www.npmjs.com/package/node-spotify-api) - A simple to use API library for the Spotify REST API.
-* [dotenv](https://www.npmjs.com/package/dotenv) - Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
-* [axios](https://www.npmjs.com/package/axios) - Axios is a package used to make HTTP calls 
 
+  * [Node-Spotify-API] (https://www.npmjs.com/package/node-spotify-api)
+  * [Axios] (https://www.npmjs.com/package/axios)
+  * [Moment] (https://www.npmjs.com/package/moment)
+  * [DotEnv] (https://www.npmjs.com/package/dotenv)
 
 ## APIs
-* [bandsintown](https://rest.bandsintown.com/) - Searches the Bands in Town Artist Events API
-* [OMDB](https://www.omdbapi.com/) - Searches the OMDB API for Movie titles
+
+* [BandsInTown](https://rest.bandsintown.com/)
+* [OMDB](https://www.omdbapi.com/)
+* [Spotify](https://www.npmjs.com/package/node-spotify-api) 
 
 ## How to Run LIRI-Bot
 
