@@ -16,8 +16,6 @@ let spotify = new Spotify({
     secret: keys.spotify.secret,
   });
 
-
-
 //Grab user input command and requested search criteria
 const command = process.argv[2];
 const value = process.argv.slice(3).join(" ");
@@ -46,7 +44,7 @@ function concertThis(artist) {
       .then(function (response) {
         console.log("Name of the venue:", response.data[0].venue.name);
         console.log("Venue location:", response.data[0].venue.city);
-        var eventDate = moment(response.data[0].datetime).format('MM/DD/YYYY');
+        let eventDate = moment(response.data[0].datetime).format('MM/DD/YYYY');
         console.log("Date of the Event:", eventDate);
       })
       .catch(function (error) {
